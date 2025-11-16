@@ -5,6 +5,7 @@ import com.backend.application.port.in.command.RegisterUserCommand;
 import com.backend.application.port.out.NotificationPort;
 import com.backend.application.port.out.UserRepositoryPort;
 import com.backend.domain.model.User;
+import com.backend.domain.valueobject.Email;
 import com.backend.domain.valueobject.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,14 +19,22 @@ public class RegisterUserServiceImpl implements RegisterUserUseCase {
 
     @Override
     public User registerUser(RegisterUserCommand command) {
+
+        // Create Value object Email
+        Email emailVO = new Email(command.email());
+
         // Create entity from domain with command
-        User user = new User(command.email(), command.password(), Role.USER);
+        User user = new User(
+                emailVO,
+                command.password(),
+                Role.USER
+        );
 
         // Save Repository
         userRepository.save(user);
 
         // Send notification
-        notificationPort.sendWelcomeEmail(user.getEmail(), "Welcome to the gym!");
+        notificationPort.sendWelcomeEmail(user.getEmail().value(), "Welcome to the gym!");
 
         // Return user created
         return user;

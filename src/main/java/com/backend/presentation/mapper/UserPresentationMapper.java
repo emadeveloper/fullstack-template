@@ -9,19 +9,18 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserPresentationMapper {
 
+
     public RegisterUserCommand toCommand(RegisterUserRequest request) {
         return new RegisterUserCommand(
                 request.email(),
-                request.password(),
-                request.role()
+                request.password()
         );
     }
 
     public UserResponse toResponse(User user) {
         return new UserResponse(
                 user.getId(),
-                user.getEmail(),
-                "Welcome to the Gym,  " + user.getEmail().getValue() + "!"
+                user.getEmail().value()
         );
     }
 }

@@ -23,7 +23,7 @@ public class UserJpaEntity {
     @GeneratedValue
     private UUID id;
 
-    private Email email;
+    private String email;
     private String password;
-    private Role role;
+    private String role;
 }

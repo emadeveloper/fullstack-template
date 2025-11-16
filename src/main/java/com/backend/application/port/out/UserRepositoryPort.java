@@ -1,8 +1,6 @@
 package com.backend.application.port.out;
 
-import com.backend.application.port.in.command.DeleteUserCommand;
 import com.backend.domain.model.User;
-import com.backend.domain.valueobject.Email;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,7 +10,7 @@ public interface UserRepositoryPort {
 
     User save(User user);
 
-    Optional<User> findByEmail(Email email);
+    Optional<User> findByEmail(String email);
 
     Optional<User> findById(UUID id);
 

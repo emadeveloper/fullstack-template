@@ -1,4 +1,4 @@
-package com.backend.infrastructure.adapter.out.persistence;
+package com.backend.infrastructure.adapter.out.persistence.repository;
 
 import com.backend.infrastructure.adapter.out.persistence.entity.UserJpaEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

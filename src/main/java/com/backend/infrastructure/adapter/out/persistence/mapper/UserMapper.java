@@ -1,6 +1,8 @@
 package com.backend.infrastructure.adapter.out.persistence.mapper;
 
 import com.backend.domain.model.User;
+import com.backend.domain.valueobject.Email;
+import com.backend.domain.valueobject.Role;
 import com.backend.infrastructure.adapter.out.persistence.entity.UserJpaEntity;
 import org.springframework.stereotype.Component;
 
@@ -10,18 +12,17 @@ public class UserMapper {
     public UserJpaEntity toEntity(User user) {
         return UserJpaEntity.builder()
                 .id(user.getId())
-                .email(user.getEmail())
+                .email(user.getEmail().value())
                 .password(user.getPassword())
-                .role(user.getRole())
+                .role(user.getRole().name())
                 .build();
     }
 
     public User toDomain(UserJpaEntity entity) {
         return new User(
-                entity.getId(),
-                entity.getEmail(),
+                new Email(entity.getEmail()),
                 entity.getPassword(),
-                entity.getRole()
+                Role.valueOf(entity.getRole())
         );
     }
 

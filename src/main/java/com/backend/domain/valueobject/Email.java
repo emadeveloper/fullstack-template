@@ -3,19 +3,14 @@ package com.backend.domain.valueobject;
 import java.util.Objects;
 import java.util.regex.Pattern;
 
-public class Email {
-    private final String value;
+
+public record Email(String value) {
     private static final Pattern EMAIL_REGEX = Pattern.compile("^[\\w._%+-]+@[\\w.-]+\\.[a-zA-Z]{2,}$");
 
-    public Email (String value) {
+    public Email {
         if (value == null || !EMAIL_REGEX.matcher(value).matches()) {
             throw new IllegalArgumentException("Invalid email format");
         }
-        this.value = value;
-    }
-
-    public String getValue() {
-        return value;
     }
 
     @Override

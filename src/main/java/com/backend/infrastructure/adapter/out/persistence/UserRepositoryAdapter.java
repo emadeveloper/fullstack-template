@@ -4,6 +4,7 @@ import com.backend.application.port.out.UserRepositoryPort;
 import com.backend.domain.model.User;
 import com.backend.domain.valueobject.Email;
 import com.backend.infrastructure.adapter.out.persistence.mapper.UserMapper;
+import com.backend.infrastructure.adapter.out.persistence.repository.SpringDataUserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -24,7 +25,7 @@ public class UserRepositoryAdapter implements UserRepositoryPort {
     }
 
     @Override
-    public Optional<User> findByEmail(Email email) {
+    public Optional<User> findByEmail(String email) {
         return Optional.empty();
     }
 
@@ -40,6 +41,5 @@ public class UserRepositoryAdapter implements UserRepositoryPort {
 
     @Override
     public void deleteById(UUID id) {
-
     }
 }

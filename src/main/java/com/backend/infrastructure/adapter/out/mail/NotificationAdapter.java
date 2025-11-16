@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class NotificationAdapter implements NotificationPort {
     @Override
-    public void sendWelcomeEmail(Email email, String message) {
+    public void sendWelcomeEmail(String email, String message) {
         // TODO: implement JavaMailSender or SendGrid for Real Email notification
-      log.info("📨 Sending welcome email to {}: {}", email.getValue(), message);
+      log.info("📨 Sending welcome email to {}: {}", email, message);
     }
 }
