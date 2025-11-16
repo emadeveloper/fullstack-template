@@ -4,6 +4,7 @@ import com.backend.application.port.in.RegisterUserUseCase;
 import com.backend.application.port.in.command.RegisterUserCommand;
 import com.backend.application.port.out.NotificationPort;
 import com.backend.application.port.out.UserRepositoryPort;
+import com.backend.domain.exception.UserAlreadyExistsException;
 import com.backend.domain.model.User;
 import com.backend.domain.valueobject.Email;
 import com.backend.domain.valueobject.Role;
@@ -19,6 +20,10 @@ public class RegisterUserServiceImpl implements RegisterUserUseCase {
 
     @Override
     public User registerUser(RegisterUserCommand command) {
+
+        if (userRepository.existsByEmail(command.email())) {
+            throw new UserAlreadyExistsException("User with email: " + command.email() + "already exists");
+        }
 
         // Create Value object Email
         Email emailVO = new Email(command.email());
