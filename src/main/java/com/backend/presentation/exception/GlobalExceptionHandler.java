@@ -3,6 +3,7 @@ package com.backend.presentation.exception;
 import com.backend.domain.exception.InvalidEmailException;
 import com.backend.domain.exception.InvalidPasswordException;
 import com.backend.domain.exception.UserAlreadyExistsException;
+import com.backend.domain.exception.UserNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -10,6 +11,12 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<ApiError> handleUserNotFound(UserNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(new ApiError(HttpStatus.NOT_FOUND.value(), ex.getMessage()));
+    }
 
     @ExceptionHandler(UserAlreadyExistsException.class)
     public ResponseEntity<ApiError> handleUserAlreadyExists(UserAlreadyExistsException ex) {

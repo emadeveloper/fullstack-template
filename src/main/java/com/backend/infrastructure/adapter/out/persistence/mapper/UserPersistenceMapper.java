@@ -7,7 +7,7 @@ import com.backend.infrastructure.adapter.out.persistence.entity.UserJpaEntity;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserMapper {
+public class UserPersistenceMapper {
 
     public UserJpaEntity toEntity(User user) {
         return UserJpaEntity.builder()
