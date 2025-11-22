@@ -4,6 +4,7 @@ import com.backend.application.port.in.RegisterUserUseCase;
 import com.backend.application.port.in.command.RegisterUserCommand;
 import com.backend.application.port.out.NotificationPort;
 import com.backend.application.port.out.UserRepositoryPort;
+import com.backend.domain.exception.InvalidEmailException;
 import com.backend.domain.exception.UserAlreadyExistsException;
 import com.backend.domain.model.User;
 import com.backend.domain.valueobject.Email;
@@ -26,11 +27,16 @@ public class RegisterUserServiceImpl implements RegisterUserUseCase {
         }
 
         // Create Value object Email
-        Email emailVO = new Email(command.email());
+        Email emailVO;
+
+        try {
+            emailVO = new Email(command.email());
+        } catch (IllegalArgumentException e) {
+            throw new InvalidEmailException(e.getMessage());
+        }
 
         // Create entity from domain with command
         User user = new User(
-
                 emailVO,
                 command.password(),
                 Role.USER
