@@ -2,14 +2,12 @@ package com.backend.presentation.controller;
 
 import com.backend.application.port.in.*;
 import com.backend.application.port.in.command.DeleteUserCommand;
-import com.backend.application.port.in.command.RegisterUserCommand;
 
 import com.backend.application.port.in.command.UpdateUserCommand;
 import com.backend.domain.model.User;
 
-import com.backend.presentation.dto.RegisterUserRequest;
 import com.backend.presentation.dto.UpdateUserRequest;
-import com.backend.presentation.dto.UserResponse;
+import com.backend.application.dto.RegisterResponseDto;
 import com.backend.presentation.mapper.UserPresentationMapper;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -30,49 +28,10 @@ import java.util.UUID;
 public class UserController {
 
     private final UserPresentationMapper mapper;
-
-    private final RegisterUserUseCase registerUserUseCase;
-
     private final GetUserByIdUseCase getUserById;
-
     private final GetAllUsersUseCase getAllUsersUseCase;
-
     private final UpdateUserUseCase updateUserUseCase;
-
     private final DeleteUserUseCase deleteUserUseCase;
-
-    @Operation(
-            summary = "Register a new user",
-            description = """
-                    Creates a new user in the system.
-                    Validates email format, checks for duplicates 
-                    and stores the user securely.
-                    """,
-            operationId = "registerUser",
-            tags = {"Users"}
-    )
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "User successfully registered"),
-            @ApiResponse(responseCode = "400", description = "Invalid input data"),
-            @ApiResponse(responseCode = "409", description = "User with provided email already exists"),
-            @ApiResponse(responseCode = "500", description = "Unexpected server error")
-    })
-    @PostMapping("/register")
-    public ResponseEntity<UserResponse> registerUser(
-            @io.swagger.v3.oas.annotations.parameters.RequestBody(
-                    description = "User registration data",
-                    required = true
-            )
-            @RequestBody RegisterUserRequest request) {
-        // Convert DTO to Command for the use case
-        RegisterUserCommand command = mapper.toCommand(request);
-        // Execute the use case
-        User user = registerUserUseCase.registerUser(command);
-        // Map the domain to DTO from response
-        UserResponse response = mapper.toResponse(user);
-        // Return HTTP Status Code Response
-        return ResponseEntity.status(201).body(response);
-    }
 
     @Operation(
             summary = "Retrieve all users",
@@ -88,10 +47,10 @@ public class UserController {
             @ApiResponse(responseCode = "500", description = "Unexpected server error")
     })
     @GetMapping
-    public ResponseEntity<List<UserResponse>> getAllUsers() {
+    public ResponseEntity<List<RegisterResponseDto>> getAllUsers() {
         List<User> users = getAllUsersUseCase.getAllUsers();
 
-        List<UserResponse> response = users.stream()
+        List<RegisterResponseDto> response = users.stream()
                 .map(mapper::toResponse)
                 .toList();
 
@@ -114,13 +73,13 @@ public class UserController {
             @ApiResponse(responseCode = "500", description = "Unexpected server error")
     })
     @GetMapping("/{id}")
-    public ResponseEntity<UserResponse> getUserById(
+    public ResponseEntity<RegisterResponseDto> getUserById(
             @Parameter(description = "UUID of the user to retrieve", required = true)
             @PathVariable UUID id) {
 
         User user = getUserById.getUserById(id);
 
-        UserResponse response = mapper.toResponse(user);
+        RegisterResponseDto response = mapper.toResponse(user);
 
         return ResponseEntity.ok(response);
     }
@@ -141,7 +100,7 @@ public class UserController {
             @ApiResponse(responseCode = "500", description = "Unexpected server error")
     })
     @PutMapping("/{id}")
-    public ResponseEntity<UserResponse> updateUser(
+    public ResponseEntity<RegisterResponseDto> updateUser(
             @Parameter(description = "UUID of the user to update")
             @PathVariable UUID id,
             @RequestBody UpdateUserRequest request) {
@@ -153,7 +112,7 @@ public class UserController {
         User updatedUser = updateUserUseCase.updateUser(command);
 
         // Map domain -> DTO
-        UserResponse response = mapper.toResponse(updatedUser);
+        RegisterResponseDto response = mapper.toResponse(updatedUser);
 
         // Return the response
         return ResponseEntity.ok(response);

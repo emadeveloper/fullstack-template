@@ -4,6 +4,21 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+### Logs ###
+*.log
+
+### Environment variables ###
+.env
+*.env
+.env.local
+.env.*.local
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.iws
+
 ### STS ###
 .apt_generated
 .classpath
@@ -15,8 +30,6 @@ target/
 
 ### IntelliJ IDEA ###
 .idea
-*.iws
-*.iml
 *.ipr
 
 ### NetBeans ###
@@ -28,6 +41,3 @@ target/
 build/
 !**/src/main/**/build/
 !**/src/test/**/build/
-
-### VS Code ###
-.vscode/

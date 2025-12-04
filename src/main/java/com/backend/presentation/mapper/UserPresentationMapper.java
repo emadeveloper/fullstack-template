@@ -5,7 +5,7 @@ import com.backend.application.port.in.command.UpdateUserCommand;
 import com.backend.domain.model.User;
 import com.backend.presentation.dto.RegisterUserRequest;
 import com.backend.presentation.dto.UpdateUserRequest;
-import com.backend.presentation.dto.UserResponse;
+import com.backend.application.dto.RegisterResponseDto;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
@@ -29,10 +29,13 @@ public class UserPresentationMapper {
         );
     }
 
-    public UserResponse toResponse(User user) {
-        return new UserResponse(
+    public RegisterResponseDto toResponse(User user) {
+        return new RegisterResponseDto(
                 user.getId(),
-                user.getEmail().value()
+                user.getEmail().value(),
+                user.getName(),
+                user.getRole().name(),
+                null
         );
     }
 }
