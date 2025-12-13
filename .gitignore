@@ -1,43 +1,38 @@
-HELP.md
-target/
-.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
-
-### Logs ###
-*.log
-
-### Environment variables ###
+# Environment variables
 .env
 *.env
 .env.local
 .env.*.local
+!.env.example
 
-# IDE
-.idea/
+# Backend (Maven)
+backend/target/
+backend/.mvn/
+backend/HELP.md
+backend/*.log
+backend/.idea/
+backend/*.iml
+backend/*.iws
+backend/build/
+
+# Frontend (Node)
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+frontend/.env.local
+
+# IDEs
 .vscode/
-*.iml
-*.iws
-
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-
-### IntelliJ IDEA ###
-.idea
+.idea/
+*.swp
+*.swo
+*~
 *.ipr
 
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-!**/src/main/**/build/
-!**/src/test/**/build/
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
