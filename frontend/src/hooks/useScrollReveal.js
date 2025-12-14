@@ -7,7 +7,6 @@ export const useScrollReveal = (options = {}) => {
   const {
     threshold = 0.1,
     rootMargin = '0px 0px -100px 0px',
-    triggerOnce = true,
   } = options;
 
   useEffect(() => {
@@ -15,10 +14,7 @@ export const useScrollReveal = (options = {}) => {
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          if (triggerOnce && elementRef.current) {
-            observer.unobserve(elementRef.current);
-          }
-        } else if (!triggerOnce) {
+        } else {
           setIsVisible(false);
         }
       },
@@ -38,7 +34,7 @@ export const useScrollReveal = (options = {}) => {
         observer.unobserve(currentElement);
       }
     };
-  }, [threshold, rootMargin, triggerOnce]);
+  }, [threshold, rootMargin]);
 
   return [elementRef, isVisible];
 };
