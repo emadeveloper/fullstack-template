@@ -5,6 +5,7 @@ import Footer from '../components/layout/Footer';
 import HeroSection from '../components/layout/HeroSection';
 import Plans from '../components/layout/Plans';
 import TrainingPrograms from '../components/layout/TrainingPrograms';
+import Products from '../components/layout/Products';
 
 export function Home() {
   return (
@@ -18,6 +19,8 @@ export function Home() {
         <Plans />
         {/* Features */}
         <TrainingPrograms />
+        {/* Products */}
+        <Products />
       </main>
       {/* Footer */}
       <Footer />

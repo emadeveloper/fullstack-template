@@ -1,8 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '../ui/Button';
+import { useScrollReveal } from '../../hooks/useScrollReveal';
 
 const Plans = () => {
+  const [sectionRef, isVisible] = useScrollReveal({ threshold: 0.1 });
+
   const plans = [
     {
       id: 1,
@@ -63,10 +66,18 @@ const Plans = () => {
   ];
 
   return (
-    <section id="planes" className="bg-[#202128] py-40 px-4 sm:px-6 lg:px-8">
+    <section 
+      id="planes" 
+      ref={sectionRef}
+      className={`bg-[#202128] py-40 px-4 sm:px-6 lg:px-8 transition-all duration-1000 ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+      }`}
+    >
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-24">
+        <div className={`text-center mb-24 transition-all duration-1000 delay-200 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}>
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Elegí tu plan
           </h2>
@@ -78,14 +89,21 @@ const Plans = () => {
 
         {/* Plans Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
-          {plans.map((plan) => (
+          {plans.map((plan, index) => (
             <div
               key={plan.id}
-              className={`relative ${
+              className={`relative transition-all duration-700 ${
                 plan.popular
                   ? 'md:scale-105 md:-mt-4 md:mb-4 z-10'
                   : ''
+              } ${
+                isVisible 
+                  ? 'opacity-100 translate-y-0' 
+                  : 'opacity-0 translate-y-10'
               }`}
+              style={{
+                transitionDelay: isVisible ? `${300 + index * 100}ms` : '0ms'
+              }}
             >
               {/* Popular Badge */}
               {plan.popular && (

@@ -1,6 +1,9 @@
 import React from 'react';
+import { useScrollReveal } from '../../hooks/useScrollReveal';
 
 const TrainingPrograms = () => {
+  const [sectionRef, isVisible] = useScrollReveal({ threshold: 0.1 });
+
   const programs = [
     {
       id: 1,
@@ -66,10 +69,18 @@ const TrainingPrograms = () => {
   ];
 
   return (
-    <section id="rutinas" className="bg-gray-100 py-20 px-4 sm:px-6 lg:px-8">
+    <section 
+      id="rutinas" 
+      ref={sectionRef}
+      className={`bg-gray-100 py-20 px-4 sm:px-6 lg:px-8 transition-all duration-1000 ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+      }`}
+    >
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className={`text-center mb-16 transition-all duration-1000 delay-200 ${
+          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+        }`}>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black mb-4 uppercase tracking-wide">
             Nuestros Programas de Entrenamiento
           </h2>
@@ -80,10 +91,17 @@ const TrainingPrograms = () => {
 
         {/* Programs Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {programs.map((program) => (
+          {programs.map((program, index) => (
             <div
               key={program.id}
-              className="bg-[#202128] rounded-2xl p-8 shadow-2xl transition-all duration-300 hover:scale-105 group"
+              className={`bg-[#202128] rounded-2xl p-8 shadow-2xl transition-all duration-300 hover:scale-105 group ${
+                isVisible 
+                  ? 'opacity-100 translate-y-0' 
+                  : 'opacity-0 translate-y-10'
+              }`}
+              style={{
+                transitionDelay: isVisible ? `${400 + index * 100}ms` : '0ms'
+              }}
             >
               {/* Icon */}
               <div className="flex justify-center mb-6">

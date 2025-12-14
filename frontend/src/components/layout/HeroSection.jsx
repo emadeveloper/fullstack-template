@@ -8,31 +8,31 @@ const HeroSection = () => {
   const slides = [
     {
       id: 1,
-      title: 'Transforma tu cuerpo',
+      title: 'Transformá tu cuerpo',
       subtitle: 'La disciplina es el puente entre tus metas y tus logros',
-      description: 'Cada entrenamiento te acerca más a la mejor versión de ti mismo',
+      description: 'Cada entrenamiento te acerca más a la mejor versión de vos mismo',
       category: 'Ejercicio',
       image: '', // Placeholder for image
     },
     {
       id: 2,
-      title: 'Alimenta tu éxito',
-      subtitle: 'Tu cuerpo es un templo, nutre tu mente y fortalece tu espíritu',
+      title: 'Alimentá tu éxito',
+      subtitle: 'Tu cuerpo es un templo, nutrí tu mente y fortalecé tu espíritu',
       description: 'La nutrición adecuada es la base de todo progreso físico',
       category: 'Nutrición',
       image: '', // Placeholder for image
     },
     {
       id: 3,
-      title: 'Supera tus límites',
-      subtitle: 'El dolor que sientes hoy será la fuerza que tendrás mañana',
+      title: 'Superá tus límites',
+      subtitle: 'El dolor que sentís hoy será la fuerza que tendrás mañana',
       description: 'No te rindas cuando estés cerca. El éxito está a un paso más',
       category: 'Motivación',
       image: '', // Placeholder for image
     },
     {
       id: 4,
-      title: 'Construye tu mejor versión',
+      title: 'Construyí tu mejor versión',
       subtitle: 'La consistencia supera a la perfección',
       description: 'Pequeños pasos diarios llevan a grandes transformaciones',
       category: 'Ejercicio',
@@ -41,8 +41,8 @@ const HeroSection = () => {
     {
       id: 5,
       title: 'Combustible para el cambio',
-      subtitle: 'Lo que comes determina cómo te sientes y cómo te ves',
-      description: 'Elige alimentos que te den energía, no que te la quiten',
+      subtitle: 'Lo que comes determina cómo te sentís y cómo te ves',
+      description: 'Elegí alimentos que te den energía, no que te la quiten',
       category: 'Nutrición',
       image: '', // Placeholder for image
     },
