@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '../components/ui/Button';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
+import HeroSection from '../components/layout/HeroSection';
 
 export function Home() {
   return (
@@ -9,29 +10,8 @@ export function Home() {
       {/* Navbar */}
       <Navbar />
       {/* Hero Section */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="text-center">
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-            Manage Your Gym
-            <span className="block text-primary mt-2">With Ease</span>
-          </h1>
-          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-            Complete gym management system with memberships, routines, 
-            and trainer management. Built with modern technologies.
-          </p>
-          <div className="flex justify-center space-x-4">
-            <Link to="/register">
-              <Button className="px-8 py-3 text-lg">
-                Get Started Free
-              </Button>
-            </Link>
-            <Link to="/login">
-              <Button variant="secondary" className="px-8 py-3 text-lg">
-                Sign In
-              </Button>
-            </Link>
-          </div>
-        </div>
+      <main className="">
+        <HeroSection />
 
         {/* Features */}
         <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8">

@@ -20,7 +20,6 @@ const Navbar = () => {
   // Starts at 1 (fully opaque) and decreases to 0.7 (70% opacity) as user scrolls
   const opacity = Math.max(0.7, 1 - scrollY / 200);
   const backgroundColor = `rgba(0, 0, 0, ${opacity})`;
-  
 
   const menuItems = [
     { label: "Planes", href: "#planes" },
