@@ -118,7 +118,7 @@ const Plans = () => {
               <div
                 className={`h-full rounded-2xl shadow-2xl transition-all duration-300 hover:shadow-primary/20 ${
                   plan.popular
-                    ? 'bg-gradient-to-br from-primary/20 via-[#1a1a1a] to-black border-2 border-primary'
+                    ? 'bg-linear-to-br from-primary/20 via-[#1a1a1a] to-black border-2 border-primary'
                     : 'bg-[#1a1a1a] border border-[#2a2a2a]'
                 } p-8 flex flex-col`}
               >
@@ -155,7 +155,7 @@ const Plans = () => {
                   {plan.features.map((feature, featureIndex) => (
                     <li key={featureIndex} className="flex items-start">
                       <svg
-                        className={`w-6 h-6 mr-3 flex-shrink-0 mt-0.5 ${
+                        className={`w-6 h-6 mr-3 shrink-0 mt-0.5 ${
                           plan.popular ? 'text-primary' : 'text-secondary'
                         }`}
                         fill="none"
