@@ -6,6 +6,7 @@ import HeroSection from '../components/layout/HeroSection';
 import Plans from '../components/layout/Plans';
 import TrainingPrograms from '../components/layout/TrainingPrograms';
 import Products from '../components/layout/Products';
+import Testimonials from '../components/layout/Testimonials';
 
 export function Home() {
   return (
@@ -17,8 +18,10 @@ export function Home() {
         <HeroSection />
         {/* Plans Section */}
         <Plans />
-        {/* Features */}
+        {/* Training Programs Section */}
         <TrainingPrograms />
+        {/* Training Programs Section */}
+        <Testimonials />
         {/* Products */}
         <Products />
       </main>

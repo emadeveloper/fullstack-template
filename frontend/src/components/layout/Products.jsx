@@ -239,7 +239,7 @@ const Products = () => {
                 className="bg-[#1a1a1a] rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 hover:-translate-y-2 group block cursor-pointer"
               >
               {/* Product Image */}
-              <div className="relative h-64 bg-gradient-to-br from-gray-800 to-gray-900 overflow-hidden">
+              <div className="relative h-64 bg-linear-to-br from-gray-800 to-gray-900 overflow-hidden">
                 {product.image ? (
                   <img
                     src={product.image}

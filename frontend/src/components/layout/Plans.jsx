@@ -10,7 +10,7 @@ const Plans = () => {
     {
       id: 1,
       name: 'Básico',
-      price: '$9.999',
+      price: '$14.999',
       period: '/mes',
       description: 'Perfecto para comenzar tu transformación',
       features: [
@@ -27,7 +27,7 @@ const Plans = () => {
     {
       id: 2,
       name: 'Premium',
-      price: '$14.999',
+      price: '$29.999',
       period: '/mes',
       description: 'El plan más popular para resultados óptimos',
       features: [
@@ -46,7 +46,7 @@ const Plans = () => {
     {
       id: 3,
       name: 'VIP',
-      price: '$19.999',
+      price: '$49.999',
       period: '/mes',
       description: 'Experiencia exclusiva y completa',
       features: [
