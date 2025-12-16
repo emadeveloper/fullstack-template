@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '../ui/Button';
+import Logo from "../../docs/img/la-resistencia-logo-1.jpg";
 
 const HeroSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -12,7 +13,7 @@ const HeroSection = () => {
       subtitle: 'La disciplina es el puente entre tus metas y tus logros',
       description: 'Cada entrenamiento te acerca más a la mejor versión de vos mismo',
       category: 'Ejercicio',
-      image: '', // Placeholder for image
+      image: Logo, // Placeholder for image
     },
     {
       id: 2,
@@ -86,7 +87,7 @@ const HeroSection = () => {
                 <img
                   src={slide.image}
                   alt={slide.title}
-                  className="w-full h-full object-cover opacity-60"
+                  className="w-full h-full object-cover opacity-60 sm:object-fill"
                 />
               ) : (
                 <div className="w-full h-full bg-linear-to-br from-red-800 via-gray-900 to-black" />

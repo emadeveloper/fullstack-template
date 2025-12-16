@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "../ui/Button";
+import Logo from "../../docs/img/la-resistencia-logo-1.jpg";
 
 const Navbar = () => {
   
@@ -44,12 +45,11 @@ const Navbar = () => {
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-25">
           {/* Logo */}
-          <div className="flex items-center space-x-2">
+          <div className="max-w-full space-x-8">
             <Link
               to="/"
-              className="uppercase text-2xl font-extrabold text-white hover:text-primary transition-colors"
             >
-              La Resistencia Gym
+              <img className="h-full rounded-full size-44" src={Logo} alt="" />
             </Link>
           </div>
 

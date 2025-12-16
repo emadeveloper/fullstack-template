@@ -4,6 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { Button } from '../components/ui/Button';
 import { Input } from '../components/ui/Input';
 import { Card } from '../components/ui/Card';
+import Logo from "../docs/img/la-resistencia-logo-1.jpg"
 
 export function Register() {
   const navigate = useNavigate();
@@ -70,7 +71,7 @@ export function Register() {
     const result = await register(formData.email, formData.password);
     
     if (result.success) {
-      // Auto-login después de registro exitoso
+      // Auto-login after successfull register
       navigate('/dashboard');
     } else {
       setServerError(result.error);
@@ -78,20 +79,34 @@ export function Register() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-purple-50 to-pink-100 px-4">
-      <Card className="w-full max-w-md">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Create Account</h1>
-          <p className="text-gray-600 mt-2">Sign up to get started</p>
+    <div className="min-h-screen w-full bg-black flex flex-col items-center justify-center px-4 sm:px-6 py-8 sm:py-12 lg:py-16">
+      {/* Logo */}
+      <div className="mb-4 sm:mb-6 lg:mb-8 flex justify-center">
+        <img 
+          src={Logo} 
+          alt="La Resistencia Logo" 
+          className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto object-contain"
+        />
+      </div>
+
+      {/* Card */}
+      <Card className="w-full max-w-md sm:max-w-lg lg:max-w-xl bg-surface shadow-2xl border border-mid-gray/20">
+        <div className="text-center mb-6 sm:mb-8">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-heading text-foreground uppercase tracking-tight">
+            Create Account
+          </h1>
+          <p className="text-secondary-text mt-2 text-sm sm:text-base">
+            Sign up to get started
+          </p>
         </div>
 
         {serverError && (
-          <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg">
-            <p className="text-sm text-red-600">{serverError}</p>
+          <div className="mb-4 sm:mb-6 p-3 sm:p-4 bg-gym-red/10 border border-gym-red rounded-lg">
+            <p className="text-xs sm:text-sm text-gym-red font-medium">{serverError}</p>
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5 lg:space-y-6">
           <Input
             label="Email"
             type="email"
@@ -101,43 +116,49 @@ export function Register() {
             error={errors.email}
             placeholder="you@example.com"
             autoComplete="email"
+            className="text-sm sm:text-base"
           />
 
-          <Input
-            label="Password"
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            error={errors.password}
-            placeholder="••••••••"
-            autoComplete="new-password"
-          />
+          {/* Password fields - stacked on mobile, side by side on larger screens */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
+            <Input
+              label="Password"
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              error={errors.password}
+              placeholder="••••••••"
+              autoComplete="new-password"
+              className="text-sm sm:text-base"
+            />
 
-          <Input
-            label="Confirm Password"
-            type="password"
-            name="confirmPassword"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-            error={errors.confirmPassword}
-            placeholder="••••••••"
-            autoComplete="new-password"
-          />
+            <Input
+              label="Confirm Password"
+              type="password"
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              error={errors.confirmPassword}
+              placeholder="••••••••"
+              autoComplete="new-password"
+              className="text-sm sm:text-base"
+            />
+          </div>
 
           <Button
             type="submit"
             loading={loading}
-            className="w-full"
+            className="w-full mt-4 sm:mt-6 py-3 sm:py-3.5 lg:py-4 text-base sm:text-lg lg:text-xl uppercase font-heading bg-gym-red hover:bg-gym-red-light transition-colors"
           >
             Create Account
           </Button>
         </form>
 
-        <div className="mt-6 text-center">
-          <p className="text-sm text-gray-600">
+        <div className="mt-6 sm:mt-8 text-center">
+          <p className="text-xs sm:text-sm text-text-muted">
             Already have an account?{' '}
-            <Link to="/login" className="text-primary font-medium hover:underline">
+            <Link to="/login" className="text-gym-red font-medium hover:underline">
               Sign in
             </Link>
           </p>
