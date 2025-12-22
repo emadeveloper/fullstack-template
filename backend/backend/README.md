@@ -76,6 +76,51 @@ Sistema completo de gestión para gimnasios con autenticación JWT y arquitectur
 
 ---
 
+## 🗄️ Database Schema
+
+### Current Schema (v1.0 - MVP)
+
+![Database Schema](docs/database/database-schema.png)
+
+### Tables
+
+#### Users
+| Column | Type | Constraints | Description |
+|--------|------|-------------|-------------|
+| id | UUID | PRIMARY KEY | Unique identifier |
+| email | VARCHAR(255) | UNIQUE, NOT NULL | User email (lowercase) |
+| password | VARCHAR(255) | NOT NULL | BCrypt hashed password |
+| name | VARCHAR(100) | NULL | User display name |
+| role | VARCHAR(20) | NOT NULL, DEFAULT 'USER' | USER, ADMIN, TRAINER |
+| created_at | TIMESTAMP | NOT NULL | Account creation time |
+| updated_at | TIMESTAMP | NOT NULL | Last update time |
+| last_login_at | TIMESTAMP | NULL | Last successful login |
+| is_active | BOOLEAN | NOT NULL, DEFAULT true | Account status |
+
+### Relationships (Future)
+- Users → Memberships (1:N)
+- Users → Routines (1:N)
+- Users → Trainers (1:1)
+
+### Database Design Principles
+- **UUID Primary Keys:** Better for distributed systems and security
+- **Audit Timestamps:** Track creation and updates
+- **Soft Deletes Ready:** is_active flag for deactivation
+- **Email Normalization:** Stored in lowercase
+- **Password Security:** BCrypt with cost factor 10
+
+### Schema Evolution
+See [schema.dbml](docs/database/schema.dbml) for the complete database definition.
+
+Future versions will include:
+- Memberships (payment tracking)
+- Routines (workout plans)
+- Trainers (staff management)
+- Payments (transaction history)
+```
+
+---
+
 ## 🏃 Quick Start
 
 ### Prerequisites
